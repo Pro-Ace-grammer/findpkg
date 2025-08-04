@@ -40,7 +40,9 @@ python -m findpkg pandas
 
 - Output
 ```bash
-🔍 Searching for package 'pandas'...
+Searching for package 'pandas'...
+
+Package '{package_name}' found in the following location(s):
 
 → C:\Users\User\Desktop\Projects\myenv1\Lib
 → C:\Users\User\Desktop\Projects\myenv2\Lib
