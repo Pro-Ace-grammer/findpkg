@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="findpkg",
-    version="0.1.1",
+    version="0.1.2",
     description="CLI tool to locate in which virtual environment a Python package is installed.",
     long_description=long_description,
     long_description_content_type="text/markdown",

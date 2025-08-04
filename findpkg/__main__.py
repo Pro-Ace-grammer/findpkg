@@ -18,8 +18,8 @@ def search_package(package_name):
         os.path.join(os.environ.get("USERPROFILE", ""), "Desktop", "projects"),
     ]
 
-    print(f"\nSearching for package '{package_name}'...\n")
-    found_envs = set()
+    print(f"\n🔍 Searching for package '{package_name}'...\n")
+    found_envs = dict()
 
     for base in base_dirs:
         if not os.path.exists(base):
@@ -27,6 +27,7 @@ def search_package(package_name):
         for root, dirs, files in os.walk(base):
             if "site-packages" in root:
                 if is_package_installed_in_site_packages(root, package_name):
+                    # Go back to the venv root by trimming after "Lib" or "lib"
                     parts = root.split(os.sep)
                     if "Lib" in parts:
                         lib_index = parts.index("Lib")
@@ -35,19 +36,19 @@ def search_package(package_name):
                     else:
                         continue
                     env_path = os.sep.join(parts[:lib_index])
-                    found_envs.add(env_path)
+                    normalized_env = os.path.normcase(env_path)
+                    if normalized_env not in found_envs:
+                        found_envs[normalized_env] = env_path
 
     if found_envs:
-        print(f"Package '{package_name}' found in the following location(s):\n")
-        for env in sorted(found_envs):
+        print(f"✅ Package '{package_name}' found at:\n")
+        for env in sorted(found_envs.values()):
             print(f"→ {env}")
     else:
-        print(f"Package '{package_name}' not found in known virtual environments.")
+        print(f"❌ Package '{package_name}' not found in known virtual environments.")
 
-
-
-def main():
+if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage:\nfindpkg <package_name>")
+        print("Usage:\n  python -m findpkg <package_name>")
     else:
         search_package(sys.argv[1])
