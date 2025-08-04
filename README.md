@@ -42,7 +42,7 @@ python -m findpkg pandas
 ```bash
 Searching for package 'pandas'...
 
-Package '{package_name}' found in the following location(s):
+Package 'pandas' found in the following location(s):
 
 → C:\Users\User\Desktop\Projects\myenv1\Lib
 → C:\Users\User\Desktop\Projects\myenv2\Lib
@@ -57,3 +57,6 @@ Package '{package_name}' found in the following location(s):
 ## 🤝 Contributing
 PRs are welcome! Please feel free to fork this repo and contribute.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
